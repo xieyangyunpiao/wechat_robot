@@ -4,6 +4,7 @@ import (
 	"wechat-robot/internal/config"
 	"wechat-robot/internal/models"
 
+	"gorm.io/driver/mysql"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
@@ -16,13 +17,17 @@ func Init() error {
 
 	// 根据配置选择数据库驱动
 	switch config.AppConfig.DB.Driver {
+	case "mysql":
+		DB, err = gorm.Open(mysql.Open(config.AppConfig.DB.DSN), &gorm.Config{
+			Logger: logger.Default.LogMode(logger.Info),
+		})
 	case "sqlite":
 		DB, err = gorm.Open(sqlite.Open(config.AppConfig.DB.DSN), &gorm.Config{
 			Logger: logger.Default.LogMode(logger.Info),
 		})
 	default:
-		// 默认使用SQLite
-		DB, err = gorm.Open(sqlite.Open("wechat_robot.db"), &gorm.Config{
+		// 默认使用MySQL
+		DB, err = gorm.Open(mysql.Open(config.AppConfig.DB.DSN), &gorm.Config{
 			Logger: logger.Default.LogMode(logger.Info),
 		})
 	}

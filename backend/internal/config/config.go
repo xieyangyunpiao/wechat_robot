@@ -44,8 +44,8 @@ func Load() error {
 	viper.SetDefault("server.port", "8080")
 	viper.SetDefault("server.host", "localhost")
 	viper.SetDefault("bot.enabled", true)
-	viper.SetDefault("database.driver", "sqlite")
-	viper.SetDefault("database.dsn", "wechat_robot.db")
+	viper.SetDefault("database.driver", "mysql")
+	viper.SetDefault("database.dsn", "root:password@tcp(localhost:3306)/wechat_robot?charset=utf8mb4&parseTime=True&loc=Local")
 	viper.SetDefault("ai.model", "gpt-3.5-turbo")
 
 	if err := viper.ReadInConfig(); err != nil {

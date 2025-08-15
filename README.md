@@ -7,7 +7,7 @@
 - **后端**: Go (Gin框架)
 - **前端管理界面**: Vue.js 3
 - **移动端界面**: React Native
-- **数据库**: SQLite/PostgreSQL
+- **数据库**: MySQL/SQLite
 - **AI集成**: OpenAI API, Claude API
 
 ## 项目结构
@@ -31,6 +31,26 @@ wechat_robot/
 ```
 
 ## 快速开始
+
+### 数据库设置
+
+项目支持 MySQL 和 SQLite 数据库。默认使用 MySQL。
+
+#### MySQL 设置
+1. 安装 MySQL 数据库
+2. 创建数据库：`CREATE DATABASE wechat_robot CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;`
+3. 执行初始化脚本：`source backend/scripts/init_mysql.sql`
+4. 配置连接信息（见 `backend/configs/config.yaml`）
+
+详细设置请参考：[MySQL设置指南](docs/MYSQL_SETUP.md)
+
+#### SQLite 设置
+修改 `backend/configs/config.yaml`：
+```yaml
+database:
+  driver: "sqlite"
+  dsn: "wechat_robot.db"
+```
 
 ### 后端启动
 ```bash

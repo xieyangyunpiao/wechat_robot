@@ -12,5 +12,5 @@ ai:
   model: "gpt-3.5-turbo"
 
 database:
-  driver: "sqlite"
-  dsn: "wechat_robot.db"
+  driver: "mysql"
+  dsn: "root:@tcp(localhost:3306)/wechat_robot?charset=utf8mb4&parseTime=True&loc=Local"
